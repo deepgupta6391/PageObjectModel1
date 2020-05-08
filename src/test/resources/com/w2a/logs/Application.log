@@ -1,0 +1,13 @@
+07/05/2020 16:46:49 devpinoyLogger Config file loaded!!!
+07/05/2020 16:46:49 devpinoyLogger OR file loaded!!!
+07/05/2020 16:46:54 devpinoyLogger Chrome Launched !!!
+07/05/2020 16:46:57 devpinoyLogger Navigated to : https://www.zoho.com/
+07/05/2020 16:47:01 devpinoyLogger Click on Element : loginlink_CSS
+07/05/2020 16:47:02 devpinoyLogger Typing in : email_CSS entered value as :deep.gupta.6391@gmail.com
+07/05/2020 16:47:02 devpinoyLogger Click on Element : nextBtn_CSS
+07/05/2020 16:47:03 devpinoyLogger Typing in : password_CSS entered value as :Lovely@123
+07/05/2020 16:47:03 devpinoyLogger Click on Element : nextBtn_CSS
+07/05/2020 16:47:13 devpinoyLogger Clicking on : crmLink_CSS
+07/05/2020 16:47:14 devpinoyLogger Click on Element : accountstab_CSS
+07/05/2020 16:47:15 devpinoyLogger Click on Element : createAccounts_CSS
+07/05/2020 16:47:16 devpinoyLogger Typing in : accountName_CSS entered value as :Deeps
