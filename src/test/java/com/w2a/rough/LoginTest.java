@@ -17,6 +17,7 @@ public class LoginTest extends Page{
 
 	public static void main(String[] args){
 			
+		//This is rough package
 		HomePage home=new HomePage();
 		
 		LoginPage lp=home.goToLogin();
