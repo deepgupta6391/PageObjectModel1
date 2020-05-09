@@ -3,6 +3,7 @@ package com.w2a.listeners;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -16,6 +17,8 @@ import org.testng.Reporter;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.w2a.base.Page;
 import com.w2a.utilities.MonitoringMail;
 import com.w2a.utilities.TestConfig;
@@ -32,7 +35,8 @@ public class CustomListeners extends Page implements ITestListener, ISuiteListen
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		test.log(Status.PASS, result.getName().toUpperCase() + " PASS");
+		//test.log(Status.PASS, result.getName().toUpperCase() + " PASS");
+		test.log(Status.PASS, MarkupHelper.createLabel(result.getName().toUpperCase()+"-Test case PASSED", ExtentColor.GREEN));
 
 		rep.flush();
 	}
@@ -46,10 +50,17 @@ public class CustomListeners extends Page implements ITestListener, ISuiteListen
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		test.log(Status.FAIL, result.getName().toUpperCase() + " Failed with exception : " + result.getThrowable());
-
+		
+		//Extent Report
+		//test.log(Status.FAIL, result.getName().toUpperCase() + " Failed with exception : " + result.getThrowable());
+		String exceptionMessage=Arrays.toString(result.getThrowable().getStackTrace());
+		test.log(Status.FAIL, MarkupHelper.createLabel(result.getName().toUpperCase()+"-TEST CASE FAILED", ExtentColor.RED));
+		//test.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable()+" -- TEST CASE FAILED", ExtentColor.RED));
+		test.log(Status.FAIL, ("<details>" + "<summary>" + "<b>" + "<font color=" + "red>" + "Exception Occured:Click to see"
+				+ "</font>" + "</b >" + "</summary>" +exceptionMessage.replaceAll(",", "<br>")+"</details>"+" \n"));
+				
 		try {
-			test.fail("Failed test screenshot", MediaEntityBuilder.createScreenCaptureFromPath(
+			test.fail("Failed test screenshot :"+"&nbsp;&nbsp;", MediaEntityBuilder.createScreenCaptureFromPath(
 					System.getProperty("user.dir") + "\\target\\surefire-reports\\html\\" + Utilities.screenshotName)
 					.build());
 		} catch (IOException e) {
@@ -57,6 +68,7 @@ public class CustomListeners extends Page implements ITestListener, ISuiteListen
 			e.printStackTrace();
 		}
 		
+		//testNG Report
 		Reporter.log("Click to see screenshot");
 		Reporter.log("<a target=\"_blank\" href=" + Utilities.screenshotName + ">Screenshot</a>");
 		Reporter.log("<br>");
@@ -67,7 +79,12 @@ public class CustomListeners extends Page implements ITestListener, ISuiteListen
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		test.log(Status.SKIP, result.getName().toUpperCase() + " Skipped the test as the runmode is NO");
+		//test.log(Status.SKIP, result.getName().toUpperCase() + " Skipped the test as the runmode is NO");
+		String exceptionMessage=Arrays.toString(result.getThrowable().getStackTrace());
+		test.log(Status.SKIP, MarkupHelper.createLabel(result.getName().toUpperCase()+"-Test case SKIPPED", ExtentColor.ORANGE));
+		//test.log(Status.SKIP, MarkupHelper.createLabel(result.getThrowable()+"-Test case SKIPPED", ExtentColor.ORANGE));
+		test.log(Status.SKIP, ("<details>" + "<summary>" + "<b>" + "<font color=" + "orange>" + "Exception Occured:Click to see"
+				+ "</font>" + "</b >" + "</summary>" +exceptionMessage.replaceAll(",", "<br>")+"</details>"+" \n"));
 		rep.flush();
 	}
 

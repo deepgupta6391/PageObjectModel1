@@ -21,7 +21,8 @@ public class ExtentManager {
 			htmlReporter=new ExtentSparkReporter(fileName);
 			  
 	        htmlReporter.config().setTheme(Theme.STANDARD);
-	        htmlReporter.config().setDocumentTitle(fileName);
+	        //htmlReporter.config().setDocumentTitle(fileName);
+	        htmlReporter.config().setReportName("Automation Test Reults");
 	        htmlReporter.config().setEncoding("utf-8");
 	        htmlReporter.config().setReportName(fileName);
 			

@@ -3,6 +3,7 @@ package com.w2a.testcases;
 import java.util.Hashtable;
 
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import com.w2a.base.Page;
@@ -16,6 +17,7 @@ public class CreateAccountsTest {
 	
 	@Test(dataProviderClass = Utilities.class,dataProvider = "dp")
 	public void createAccountsTest(Hashtable<String, String> data) {
+		//throw new SkipException("testing extent report");
 		ZohoAppPage zp=new ZohoAppPage();
 		zp.goToCRM();
 		AccountsPage account =Page.menu.goToAccounts();
